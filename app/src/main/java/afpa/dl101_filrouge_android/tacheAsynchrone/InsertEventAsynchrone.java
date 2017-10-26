@@ -1,20 +1,25 @@
 package afpa.dl101_filrouge_android.tacheAsynchrone;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import afpa.dl101_filrouge_android.MainActivity;
 import afpa.dl101_filrouge_android.database.EvenementManager;
 import afpa.dl101_filrouge_android.objet.Evenement;
 
 public class InsertEventAsynchrone extends AsyncTask<Evenement, Integer, Long> {
+    private Context mContext;
+
+    public InsertEventAsynchrone(Context context) {
+        mContext = context;
+    }
 
     protected void onPreExecute() {
         super.onPreExecute();
     }
 
     protected Long doInBackground(Evenement... evenement) {
-        EvenementManager em = new EvenementManager(MainActivity.mainContext);
+        EvenementManager em = new EvenementManager(mContext);
         /*Les managers ne sont pas static a cause du context,
         c'est pour cela que le MainActivity a un context public static*/
         if (evenement.length > 0) {

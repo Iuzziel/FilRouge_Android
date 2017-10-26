@@ -9,13 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Vector;
 
 import afpa.dl101_filrouge_android.R;
 
-/**
- * Created by DL101 on 26/10/2017.
- */
 
 public class EvenementAdapter extends BaseAdapter {
     private List<Evenement> vListEvenement;

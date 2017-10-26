@@ -11,15 +11,15 @@ import afpa.dl101_filrouge_android.vues.AjouterEvenement;
 import afpa.dl101_filrouge_android.vues.ListEvenement;
 
 public class MainActivity extends AppCompatActivity {
-    public static Context mainContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainContext = this;
+        /*
         EvenementManager em = new EvenementManager(this);
         em.open();
+        */
     }
 
     public void onClick(View view) {

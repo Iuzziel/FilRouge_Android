@@ -28,6 +28,10 @@ public class AjouterEvenement extends AppCompatActivity {
     private int fMonth;
     private int fDay;
 
+    public static String padLeft(String s) {
+        return "00".substring(s.length()) + s;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,15 +65,13 @@ public class AjouterEvenement extends AppCompatActivity {
         }
     }
 
-    private void updateDate(String quand) {
+    private void updateDate(String quand) {// Mois sur une base 0
         if (quand.equals("debut")) {
             mDateDebut.setText(new StringBuilder()
-                    // Month is 0 based so add 1
                     .append(dDay).append("/").append(dMonth + 1).append("/")
                     .append(dYear));
         } else if (quand.equals("fin")) {
             mDateFin.setText(new StringBuilder()
-                    // Month is 0 based so add 1
                     .append(fDay).append("/").append(fMonth + 1).append("/")
                     .append(fYear));
         }
@@ -91,29 +93,30 @@ public class AjouterEvenement extends AppCompatActivity {
     private void ajouterEvent() {
         EditText titre = (EditText) findViewById(R.id.editTitre);
         EditText description = (EditText) findViewById(R.id.editDescription);
-        // TODO Controle sur les dates ex: debut apres la fin?
-        if (titre.getText().toString().equals("")
+
+        if ((titre.getText().toString().equals("")
                 || description.getText().toString().equals("")
                 || mDateDebut.getText().toString().equals("")
-                || mDateFin.getText().toString().equals("")) {
+                || mDateFin.getText().toString().equals(""))
+                && Integer.valueOf(mDateFin.getText().toString()) > Integer.valueOf(mDateDebut.getText().toString())) {
             // Si l'ajout est incomplet:
             Toast.makeText(this, "L'ajout est incomplet", Toast.LENGTH_LONG).show();
         } else {
             // Si l'ajout est comlet:
-            InsertEventAsynchrone insertEventAsynchrone = new InsertEventAsynchrone();
-            try {
+            InsertEventAsynchrone insertEventAsynchrone = new InsertEventAsynchrone(this);
+            try {// Les mois sont sur une base 0 avec le datePicker
                 long tmp = insertEventAsynchrone.execute(new Evenement(titre.getText().toString(),
                         description.getText().toString(),
                         Integer.valueOf(String.valueOf(dYear)
-                                + String.valueOf(dMonth + 1)
-                                + String.valueOf(dDay)
+                                + padLeft(String.valueOf(dMonth + 1))
+                                + padLeft(String.valueOf(dDay))
                         ),
                         Integer.valueOf(String.valueOf(fYear)
-                                + String.valueOf(fMonth + 1)
-                                + String.valueOf(fDay)
+                                + padLeft(String.valueOf(fMonth + 1))
+                                + padLeft(String.valueOf(fDay))
                         ))
                 ).get();
-                Toast.makeText(this, "Insert réussi id:" + tmp, Toast.LENGTH_SHORT).show();
+                Log.d("AsyncIns", "Insert réussi");
             } catch (Exception e) {
                 Log.e("AjoutEvenement", e.getLocalizedMessage());
             }

@@ -8,11 +8,7 @@ import android.util.Log;
 
 import java.util.Vector;
 
-import afpa.dl101_filrouge_android.objets.Evenement;
-
-/**
- * Created by DL101 on 23/10/2017.
- */
+import afpa.dl101_filrouge_android.objet.Evenement;
 
 public class EvenementManager {
     private static final String TABLE_EVENEMENT = "evenement";
@@ -50,32 +46,42 @@ public class EvenementManager {
     /**
      * Recupere tout les evenement en cours a une dateLong donnee.
      *
-     * @param date
-     * @return
+     * @param date date en int, format YYYYMMDD
+     * @return Un vecteur comprenant les evenement se passant a cette date
      */
     public Vector<Evenement> getEvenementJour(int date) {
+        open();
+        /*
         Cursor c = bdd.query(TABLE_EVENEMENT,
                 new String[]{COL_ID, COL_TITRE, COL_DESCRIPTION, COL_DEBUT, COL_FIN},
-                COL_DEBUT + " < " + date + " AND " + COL_FIN + " > " + date,
+                date + " BETWEEN " + COL_DEBUT + " AND " + COL_FIN,
+                //COL_DEBUT + " <= " + date + " AND " + COL_FIN + " >= " + date,
                 null, null, null, null);
-        return cursorToVectorEv(c);
+        */
+        Cursor c = bdd.rawQuery("SELECT * FROM " + TABLE_EVENEMENT, null);
+        Log.d("EvenementManager", "c.getCount() : " + c.getCount());
+        if (c.getCount() != 0) {
+            return cursorToVectorEv(c);
+        } else {
+            return null;
+        }
     }
 
     /**
      * Transforme un curseur d'evenement en vecteur d'evenements
      *
-     * @param c
-     * @return
+     * @param c Transforme un curseur en vecteur d'evenement
+     * @return vecteur d'evenement
      */
     private Vector<Evenement> cursorToVectorEv(Cursor c) {
         if (c.getCount() == 0)
             return null;
 
-        Vector<Evenement> evenement = new Vector<Evenement>();
+        Vector<Evenement> vEvenement = new Vector<Evenement>();
 
         c.moveToFirst();
         do {
-            evenement.add(new Evenement(c.getInt(NUM_COL_ID),
+            vEvenement.add(new Evenement(c.getInt(NUM_COL_ID),
                     c.getString(NUM_COL_TITRE),
                     c.getString(NUM_COL_DESCRIPTION),
                     c.getInt(NUM_COL_DEBUT),
@@ -83,7 +89,7 @@ public class EvenementManager {
         } while (c.moveToNext());
         c.close();
 
-        return evenement;
+        return vEvenement;
     }
 
     /**
@@ -116,6 +122,7 @@ public class EvenementManager {
      * @return int, le nombre d'enregistrement supprime
      */
     public int deleteEvenement(Evenement evenement) {
+        open();
         int tmp = bdd.delete(TABLE_EVENEMENT, COL_ID + " = " + evenement.getId(), null);
         return tmp;
     }
@@ -127,6 +134,7 @@ public class EvenementManager {
      * @param evenement Complet
      */
     public void updateEvenement(Evenement evenement) {
+        open();
         ContentValues valEvent = new ContentValues();
         valEvent.put(COL_TITRE, evenement.getTitre());
         valEvent.put(COL_DESCRIPTION, evenement.getDescription());

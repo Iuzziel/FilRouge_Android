@@ -117,25 +117,25 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/btn_AjoutEvent"
+        android:id="@+id/btn_EditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="onClick"
         android:text="@string/btnAjoutEvent"
-        app:layout_constraintLeft_toRightOf="@+id/btn_Annuler"
+        app:layout_constraintLeft_toRightOf="@+id/btn_DelEvent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
     <Button
-        android:id="@+id/btn_Annuler"
+        android:id="@+id/btn_DelEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="onClick"
         android:text="@string/btnAnnuler"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btn_AjoutEvent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_EditEvent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
 </android.support.constraint.ConstraintLayout>

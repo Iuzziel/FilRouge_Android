@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import afpa.dl101_filrouge_android.R;
-import afpa.dl101_filrouge_android.objets.Evenement;
+import afpa.dl101_filrouge_android.objet.Evenement;
 import afpa.dl101_filrouge_android.tacheAsynchrone.InsertEventAsynchrone;
 
 public class AjouterEvenement extends AppCompatActivity {
@@ -77,10 +77,10 @@ public class AjouterEvenement extends AppCompatActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_AjoutEvent:
+            case R.id.btn_EditEvent:
                 ajouterEvent();
                 break;
-            case R.id.btn_Annuler:
+            case R.id.btn_DelEvent:
                 System.exit(0);
                 break;
             default:
@@ -104,13 +104,13 @@ public class AjouterEvenement extends AppCompatActivity {
             try {
                 long tmp = insertEventAsynchrone.execute(new Evenement(titre.getText().toString(),
                         description.getText().toString(),
-                        Integer.valueOf(String.valueOf(fDay)
-                                + String.valueOf(fMonth)
-                                + String.valueOf(fYear)
+                        Integer.valueOf(String.valueOf(dYear)
+                                + String.valueOf(dMonth + 1)
+                                + String.valueOf(dDay)
                         ),
-                        Integer.valueOf(String.valueOf(fDay)
-                                + String.valueOf(fMonth)
-                                + String.valueOf(fYear)
+                        Integer.valueOf(String.valueOf(fYear)
+                                + String.valueOf(fMonth + 1)
+                                + String.valueOf(fDay)
                         ))
                 ).get();
                 Toast.makeText(this, "Insert réussi id:" + tmp, Toast.LENGTH_SHORT).show();

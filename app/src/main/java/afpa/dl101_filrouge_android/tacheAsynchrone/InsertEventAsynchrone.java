@@ -5,11 +5,7 @@ import android.util.Log;
 
 import afpa.dl101_filrouge_android.MainActivity;
 import afpa.dl101_filrouge_android.database.EvenementManager;
-import afpa.dl101_filrouge_android.objets.Evenement;
-
-/**
- * Created by DL101 on 23/10/2017.
- */
+import afpa.dl101_filrouge_android.objet.Evenement;
 
 public class InsertEventAsynchrone extends AsyncTask<Evenement, Integer, Long> {
 

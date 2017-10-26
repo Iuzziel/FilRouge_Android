@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import afpa.dl101_filrouge_android.database.EvenementManager;
 import afpa.dl101_filrouge_android.vues.AjouterEvenement;
+import afpa.dl101_filrouge_android.vues.ListEvenement;
 
 public class MainActivity extends AppCompatActivity {
     public static Context mainContext;
@@ -23,9 +23,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_calendrier) {
-            Intent intent = new Intent(this, AjouterEvenement.class);
-            startActivity(intent);
+        switch (view.getId()) {
+            case R.id.btn_AjoutEvent:
+                Intent intent1 = new Intent(this, AjouterEvenement.class);
+                startActivity(intent1);
+                break;
+            case R.id.btn_ConsultEvent:
+                Intent intent2 = new Intent(this, ListEvenement.class);
+                startActivity(intent2);
+                break;
         }
     }
 }

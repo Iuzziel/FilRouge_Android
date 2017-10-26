@@ -1,4 +1,4 @@
-package afpa.dl101_filrouge_android.objets;
+package afpa.dl101_filrouge_android.objet;
 
 /**
  * Created by DL101 on 23/10/2017.
@@ -28,7 +28,7 @@ public class Evenement {
     }
 
     public String toString() {
-        return titre;
+        return titre + " " + description;
     }
 
     public int getId() {

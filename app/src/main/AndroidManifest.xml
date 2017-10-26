@@ -16,8 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".vues.AjouterEvenement" />
-        <activity android:name=".vues.ConsulterEvenement"></activity>
+        <activity
+            android:name=".vues.AjouterEvenement"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".vues.ConsulterEvenement"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".vues.ListEvenement"
+            android:parentActivityName=".vues.ConsulterEvenement" />
     </application>
 
 </manifest>

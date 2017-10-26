@@ -12,4 +12,8 @@
     <string name="ajoutEventIncomplet">Completez tous les champs pour l\'ajout</string>
     <string name="btnAjoutEvent">Ajouter Evenement</string>
     <string name="btnAnnuler">Annuler</string>
+    <string name="btn_EditEvent">Editer l\'evenement</string>
+    <string name="btn_DelEvent">Supprimer l\'evenement</string>
+    <string name="btn_AjoutEvent">Ajouter un evenement</string>
+    <string name="btn_Consult">Consulter les evenements à venir</string>
 </resources>

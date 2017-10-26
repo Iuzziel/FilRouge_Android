@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Theme de base de l'Application. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Theme des textes de date a l'ajout. -->
+    <style name="TextContactContactName" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+</resources>

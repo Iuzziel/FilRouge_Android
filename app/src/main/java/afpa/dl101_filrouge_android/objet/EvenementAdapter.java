@@ -49,7 +49,7 @@ public class EvenementAdapter extends BaseAdapter {
         }
 
         TextView editTitre = (TextView) layoutItem.findViewById(R.id.editTitre);
-        TextView dateDebut = (TextView) layoutItem.findViewById(R.id.dateDebutDisplay);
+        TextView dateDebut = (TextView) layoutItem.findViewById(R.id.dateConsultDisplay);
         TextView dateFin = (TextView) layoutItem.findViewById(R.id.dateFinDisplay);
         TextView editDesc = (TextView) layoutItem.findViewById(R.id.editDescription);
 

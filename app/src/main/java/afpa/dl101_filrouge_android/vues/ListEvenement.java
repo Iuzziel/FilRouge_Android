@@ -1,9 +1,12 @@
 package afpa.dl101_filrouge_android.vues;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -15,26 +18,32 @@ import afpa.dl101_filrouge_android.objet.EvenementAdapter;
 import afpa.dl101_filrouge_android.tacheAsynchrone.SelectEventAsynchrone;
 
 public class ListEvenement extends AppCompatActivity {
+    private int rDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_evenement);
-
-        initControl();
+        Intent intent = getIntent();
+        rDate = intent.getIntExtra("rDate", 0);
+        try {
+            initControl();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initControl() {
         SelectEventAsynchrone selectEventAsynchrone = new SelectEventAsynchrone(this);
         try {
-            Vector<Evenement> vSelectEvent = selectEventAsynchrone.execute(20171026).get();
-            if (!vSelectEvent.isEmpty()) {
+            Vector<Evenement> vSelectEvent = selectEventAsynchrone.execute(rDate).get();
+            if (vSelectEvent != null) {
                 ArrayList<Evenement> listEvent = getAListOfEvent(vSelectEvent);
                 EvenementAdapter adapter = new EvenementAdapter(this, listEvent);
                 ListView list = (ListView) findViewById(R.id.listEvent);
                 list.setAdapter(adapter);
             } else {
-                System.exit(0);
+                Toast.makeText(this, R.string.noEventToast, Toast.LENGTH_LONG).show();
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

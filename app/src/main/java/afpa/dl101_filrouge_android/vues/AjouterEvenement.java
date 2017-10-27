@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import afpa.dl101_filrouge_android.R;
+import afpa.dl101_filrouge_android.metier.ToolBox;
 import afpa.dl101_filrouge_android.objet.Evenement;
 import afpa.dl101_filrouge_android.tacheAsynchrone.InsertEventAsynchrone;
 
@@ -28,21 +29,17 @@ public class AjouterEvenement extends AppCompatActivity {
     private int fMonth;
     private int fDay;
 
-    public static String padLeft(String s) {
-        return "00".substring(s.length()) + s;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_evenement);
 
-        mDateDebut = (TextView) findViewById(R.id.dateDebutDisplay);
+        mDateDebut = (TextView) findViewById(R.id.dateConsultDisplay);
         mDateFin = (TextView) findViewById(R.id.dateFinDisplay);
     }
 
     public void changerLaDate(View view) {
-        if (view.getId() == R.id.dateDebutDisplay) {
+        if (view.getId() == R.id.dateConsultDisplay) {
             DialogFragment newFragment = new DatePickerDebutFragment();
             newFragment.show(getFragmentManager(), "DatePicker");
         } else if (view.getId() == R.id.dateFinDisplay) {
@@ -100,7 +97,7 @@ public class AjouterEvenement extends AppCompatActivity {
                 || mDateFin.getText().toString().equals(""))
                 && Integer.valueOf(mDateFin.getText().toString()) > Integer.valueOf(mDateDebut.getText().toString())) {
             // Si l'ajout est incomplet:
-            Toast.makeText(this, "L'ajout est incomplet", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.err_incomplet, Toast.LENGTH_LONG).show();
         } else {
             // Si l'ajout est comlet:
             InsertEventAsynchrone insertEventAsynchrone = new InsertEventAsynchrone(this);
@@ -108,15 +105,17 @@ public class AjouterEvenement extends AppCompatActivity {
                 long tmp = insertEventAsynchrone.execute(new Evenement(titre.getText().toString(),
                         description.getText().toString(),
                         Integer.valueOf(String.valueOf(dYear)
-                                + padLeft(String.valueOf(dMonth + 1))
-                                + padLeft(String.valueOf(dDay))
+                                + ToolBox.padLeft(String.valueOf(dMonth + 1))
+                                + ToolBox.padLeft(String.valueOf(dDay))
                         ),
                         Integer.valueOf(String.valueOf(fYear)
-                                + padLeft(String.valueOf(fMonth + 1))
-                                + padLeft(String.valueOf(fDay))
+                                + ToolBox.padLeft(String.valueOf(fMonth + 1))
+                                + ToolBox.padLeft(String.valueOf(fDay))
                         ))
                 ).get();
+                Toast.makeText(this, R.string.insertReussi, Toast.LENGTH_LONG).show();
                 Log.d("AsyncIns", "Insert réussi");
+                System.exit(0);
             } catch (Exception e) {
                 Log.e("AjoutEvenement", e.getLocalizedMessage());
             }

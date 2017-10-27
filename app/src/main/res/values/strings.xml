@@ -16,4 +16,8 @@
     <string name="btn_DelEvent">Supprimer l\'evenement</string>
     <string name="btn_AjoutEvent">Ajouter un evenement</string>
     <string name="btn_Consult">Consulter les evenements à venir</string>
+    <string name="noEventToast">Aucun evenement à cette date!</string>
+    <string name="btn_recherche">Rechercher</string>
+    <string name="err_incomplet">Champ incomplet.</string>
+    <string name="insertReussi">Insert réussi.</string>
 </resources>

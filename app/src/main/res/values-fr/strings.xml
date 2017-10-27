@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FilRouge</string>
+    <string name="ajoutEventIncomplet">Completez tous les champs pour l\'ajout</string>
+    <string name="btnAjoutEvent">Ajouter Evenement</string>
+    <string name="btnAnnuler">Annuler</string>
+    <string name="btn_AjoutEvent">Ajouter un evenement</string>
+    <string name="btn_Consult">Consulter les evenements à venir</string>
+    <string name="btn_DelEvent">Supprimer l\'evenement</string>
+    <string name="btn_EditEvent">Editer l\'evenement</string>
+    <string name="btn_calendrier">Calendrier</string>
+    <string name="btn_recherche">Rechercher</string>
+    <string name="dateDisplay">Date</string>
+    <string name="entrezDescription">Entrez la description</string>
+    <string name="entrezTitre">Entrez le titre</string>
+    <string name="err_incomplet">Champ incomplet.</string>
+    <string name="insertReussi">Insert réussi.</string>
+    <string name="menu_principal">Menu principal</string>
+    <string name="noEventToast">Aucun evenement à cette date!</string>
+    <string name="titre">Titre</string>
+    <string name="tv_Description">Description</string>
+    <string name="tv_dateDebut">Date de debut</string>
+    <string name="tv_dateFin">Date de fin</string>
+</resources>

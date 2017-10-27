@@ -26,6 +26,7 @@ public class ListEvenement extends AppCompatActivity {
         setContentView(R.layout.activity_list_evenement);
         Intent intent = getIntent();
         rDate = intent.getIntExtra("rDate", 0);
+        Log.d("rDate", String.valueOf(rDate));
         try {
             initControl();
         } catch (Exception e) {
@@ -37,7 +38,8 @@ public class ListEvenement extends AppCompatActivity {
         SelectEventAsynchrone selectEventAsynchrone = new SelectEventAsynchrone(this);
         try {
             Vector<Evenement> vSelectEvent = selectEventAsynchrone.execute(rDate).get();
-            if (vSelectEvent != null) {
+
+            if (!(vSelectEvent.isEmpty())) {
                 ArrayList<Evenement> listEvent = getAListOfEvent(vSelectEvent);
                 EvenementAdapter adapter = new EvenementAdapter(this, listEvent);
                 ListView list = (ListView) findViewById(R.id.listEvent);
@@ -52,8 +54,10 @@ public class ListEvenement extends AppCompatActivity {
 
     public ArrayList<Evenement> getAListOfEvent(Vector<Evenement> vEvenement) {
         ArrayList<Evenement> listEvent = new ArrayList<>();
+
         for (Evenement e : vEvenement)
             listEvent.add(e);
+
         return listEvent;
     }
 }

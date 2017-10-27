@@ -2,6 +2,7 @@ package afpa.dl101_filrouge_android.objet;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import afpa.dl101_filrouge_android.R;
+import afpa.dl101_filrouge_android.metier.ToolBox;
 
 
 public class EvenementAdapter extends BaseAdapter {
@@ -49,13 +51,15 @@ public class EvenementAdapter extends BaseAdapter {
         }
 
         TextView editTitre = (TextView) layoutItem.findViewById(R.id.editTitre);
-        TextView dateDebut = (TextView) layoutItem.findViewById(R.id.dateConsultDisplay);
+        TextView dateDebut = (TextView) layoutItem.findViewById(R.id.dateDebutDisplay);
         TextView dateFin = (TextView) layoutItem.findViewById(R.id.dateFinDisplay);
         TextView editDesc = (TextView) layoutItem.findViewById(R.id.editDescription);
 
+        Log.e("EvenementManager", "1) " + vListEvenement.get(0).getTitre());
+
         editTitre.setText(vListEvenement.get(position).getTitre());
-        dateDebut.setText(String.valueOf(vListEvenement.get(position).getDateIntDebut()));
-        dateFin.setText(String.valueOf(vListEvenement.get(position).getDateIntFin()));
+        dateDebut.setText(ToolBox.formatDate(String.valueOf(vListEvenement.get(position).getDateIntDebut())));
+        dateFin.setText(ToolBox.formatDate(String.valueOf(vListEvenement.get(position).getDateIntFin())));
         editDesc.setText(vListEvenement.get(position).getDescription());
 
         return layoutItem;

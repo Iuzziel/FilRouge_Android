@@ -51,12 +51,15 @@ public class EvenementManager {
      */
     public Vector<Evenement> getEvenementJour(int date) {
         open();
+
         Cursor c = bdd.query(TABLE_EVENEMENT,
                 new String[]{COL_ID, COL_TITRE, COL_DESCRIPTION, COL_DEBUT, COL_FIN},
-                date + " BETWEEN " + COL_DEBUT + " AND " + COL_FIN,
-                // COL_DEBUT + " <= " + date + " AND " + COL_FIN + " >= " + date,
+                //date + " BETWEEN " + COL_DEBUT + " AND " + COL_FIN,
+                COL_DEBUT + " <= " + date + " AND " + COL_FIN + " >= " + date,
                 null, null, null, null);
-        Log.d("EvenementManager", "c.getCount() : " + c.getCount());
+
+        //Cursor c = bdd.rawQuery("SELECT * FROM " + TABLE_EVENEMENT, null);
+
         if (c.getCount() != 0) {
             return cursorToVectorEv(c);
         } else {

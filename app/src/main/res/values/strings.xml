@@ -20,4 +20,5 @@
     <string name="btn_recherche">Rechercher</string>
     <string name="err_incomplet">Champ incomplet.</string>
     <string name="insertReussi">Insert réussi.</string>
+    <string name="btn_test">Test</string>
 </resources>

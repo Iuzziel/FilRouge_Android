@@ -1,5 +1,6 @@
 package afpa.dl101_filrouge_android.vues;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -46,6 +47,7 @@ public class ConsulterEvenement extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void onDateSet(int year, int monthOfYear, int dayOfMonth) {
         TextView textView = (TextView) findViewById(R.id.dateConsultDisplay);
         textView.setText(ToolBox.padLeft(String.valueOf(dayOfMonth))

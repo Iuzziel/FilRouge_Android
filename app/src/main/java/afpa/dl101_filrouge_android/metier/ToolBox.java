@@ -15,4 +15,12 @@ public abstract class ToolBox {
         String day = s.substring(6, 8);
         return day + "/" + month + "/" + year;
     }
+
+    public static double ConvTempToFarenheit(double temperature) {
+        return (temperature - 273) * (9 / 5) + 32;
+    }
+
+    public static double ConvTempToCelsius(double temperature) {
+        return (temperature - 273.15);
+    }
 }

@@ -22,6 +22,9 @@ public class EvenementManager {
     private static final int NUM_COL_DEBUT = 3;
     private static final String COL_FIN = "date_fin";
     private static final int NUM_COL_FIN = 4;
+    private static final String COL_LOCATION = "location";
+    private static final int NUM_COL_LOCATION = 5;
+
 
     private static final String NOM_BDD = "calendrierMeteoBDD";
     private static final int VERSION = 1;
@@ -53,7 +56,7 @@ public class EvenementManager {
         open();
 
         Cursor c = bdd.query(TABLE_EVENEMENT,
-                new String[]{COL_ID, COL_TITRE, COL_DESCRIPTION, COL_DEBUT, COL_FIN},
+                new String[]{COL_ID, COL_TITRE, COL_DESCRIPTION, COL_DEBUT, COL_FIN, COL_LOCATION},
                 //date + " BETWEEN " + COL_DEBUT + " AND " + COL_FIN,
                 COL_DEBUT + " <= " + date + " AND " + COL_FIN + " >= " + date,
                 null, null, null, null);
@@ -85,7 +88,8 @@ public class EvenementManager {
                     c.getString(NUM_COL_TITRE),
                     c.getString(NUM_COL_DESCRIPTION),
                     c.getInt(NUM_COL_DEBUT),
-                    c.getInt(NUM_COL_FIN)));
+                    c.getInt(NUM_COL_FIN),
+                    c.getString(NUM_COL_LOCATION)));
         } while (c.moveToNext());
         c.close();
 
@@ -101,6 +105,7 @@ public class EvenementManager {
     public long insertEvenement(Evenement evenement) {
         open();
         ContentValues valEvent = new ContentValues();
+        valEvent.put(COL_LOCATION, evenement.getLocation());
         valEvent.put(COL_FIN, evenement.getDateIntFin());
         valEvent.put(COL_DEBUT, evenement.getDateIntDebut());
         valEvent.put(COL_DESCRIPTION, evenement.getDescription());
@@ -140,6 +145,7 @@ public class EvenementManager {
         valEvent.put(COL_DESCRIPTION, evenement.getDescription());
         valEvent.put(COL_DEBUT, evenement.getDateIntDebut());
         valEvent.put(COL_FIN, evenement.getDateIntFin());
+        valEvent.put(COL_LOCATION, evenement.getLocation());
         bdd.update(TABLE_EVENEMENT, valEvent, COL_ID + " = " + evenement.getId(), null);
     }
 }

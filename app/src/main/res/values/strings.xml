@@ -22,4 +22,6 @@
     <string name="insertReussi">Insert réussi.</string>
     <string name="btn_test">Test</string>
     <string name="btn_quitter">Quit</string>
+    <string name="tv_location">Location</string>
+    <string name="entrezLocation">City near</string>
 </resources>

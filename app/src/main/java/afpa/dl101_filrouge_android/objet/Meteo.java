@@ -12,6 +12,26 @@ public class Meteo {
     private String update;
     private String date;
 
+    public Meteo(String location, String date) {
+        this.location = location;
+        this.date = date;
+    }
+
+    public Meteo(String location, String description, String icone, Double temperature,
+                 Double pressure, Double humidity, Double windSpeed,
+                 Double cloudPerc, String update, String date) {
+        this.location = location;
+        this.description = description;
+        this.icone = icone;
+        this.temperature = temperature;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.windSpeed = windSpeed;
+        this.cloudPerc = cloudPerc;
+        this.update = update;
+        this.date = date;
+    }
+
     public String getUpdate() {
         return update;
     }
@@ -26,10 +46,6 @@ public class Meteo {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Meteo(String location) {
-        this.location = location;
     }
 
     public String getLocation() {

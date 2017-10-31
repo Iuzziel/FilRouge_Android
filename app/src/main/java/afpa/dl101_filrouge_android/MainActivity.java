@@ -35,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.btn_test:
-                Meteo recMeteo = new Meteo("Caen");
+                Meteo recMeteo = new Meteo("Caen", "20171031");
                 RequeteMeteoAsync requeteMeteoAsync = new RequeteMeteoAsync(recMeteo);
                 try {
                     Meteo meteoTest = requeteMeteoAsync.execute(recMeteo.getLocation()).get();
-                    Toast.makeText(this, meteoTest.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, meteoTest.getLocation() + " "
+                            + meteoTest.getTemperature() + "°C " + meteoTest.getDescription(), Toast.LENGTH_SHORT).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

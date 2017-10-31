@@ -90,6 +90,7 @@ public class AjouterEvenement extends AppCompatActivity {
     private void ajouterEvent() {
         EditText titre = (EditText) findViewById(R.id.editTitre);
         EditText description = (EditText) findViewById(R.id.editDescription);
+        EditText location = (EditText) findViewById(R.id.editLocation);
 
         if ((titre.getText().toString().equals("")
                 || description.getText().toString().equals("")
@@ -111,7 +112,8 @@ public class AjouterEvenement extends AppCompatActivity {
                         Integer.valueOf(String.valueOf(fYear)
                                 + ToolBox.padLeft(String.valueOf(fMonth + 1))
                                 + ToolBox.padLeft(String.valueOf(fDay))
-                        ))
+                        ),
+                        location.getText().toString())
                 ).get();
                 Toast.makeText(this, R.string.insertReussi, Toast.LENGTH_LONG).show();
                 Log.d("AsyncIns", "Insert réussi");

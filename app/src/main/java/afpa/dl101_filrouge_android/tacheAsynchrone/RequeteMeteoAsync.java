@@ -73,7 +73,7 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
             String icone = jsonResult.getJSONArray("weather").getJSONObject(0).getString("icon");
 
             double temperature = jsonResult.getJSONObject("main").getDouble("temp");
-            temperature = ToolBox.ConvTempToFarenheit(temperature);
+            temperature = ToolBox.ConvTempToCelsius(temperature);
 
             double pressure = jsonResult.getJSONObject("main").getDouble("pressure");
 
@@ -81,7 +81,7 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
 
             double windSpeed = jsonResult.getJSONObject("wind").getDouble("speed");
 
-            double cloudPerc = jsonResult.getJSONObject("cloud").getDouble("all");
+            double cloudPerc = jsonResult.getJSONObject("clouds").getDouble("all");
 
             this.meteo.setDescription(description);
             this.meteo.setIcone(icone);

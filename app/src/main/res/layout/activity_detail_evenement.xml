@@ -88,7 +88,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -108,9 +108,9 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="@string/entrezDescription"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvDescription"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        app:layout_constraintLeft_toRightOf="@+id/tvDescription"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button

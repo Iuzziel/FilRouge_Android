@@ -5,10 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by DL101 on 23/10/2017.
- */
-
 class GestBDD extends SQLiteOpenHelper {
     private static final String TABLE_EVENEMENT = "evenement";
 

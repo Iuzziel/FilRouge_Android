@@ -23,4 +23,6 @@
     <string name="tv_dateFin">Date de fin</string>
     <string name="btn_test">Test</string>
     <string name="btn_quitter">Quitter</string>
+    <string name="tv_location">Emplacement</string>
+    <string name="entrezLocation">Ville proche</string>
 </resources>

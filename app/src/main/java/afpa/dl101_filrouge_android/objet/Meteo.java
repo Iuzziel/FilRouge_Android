@@ -1,20 +1,51 @@
 package afpa.dl101_filrouge_android.objet;
 
 public class Meteo {
+    private String location;
     private String description;
+    private String icone;
     private Double temperature;
     private Double pressure;
     private Double humidity;
     private Double windSpeed;
     private Double cloudPerc;
+    private String update;
+    private String date;
 
-    public Meteo(String description, Double temperature, Double pressure, Double humidity, Double windSpeed, Double cloudPerc) {
-        this.description = description;
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.windSpeed = windSpeed;
-        this.cloudPerc = cloudPerc;
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Meteo(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
     }
 
     public Double getWindSpeed() {

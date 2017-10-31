@@ -21,4 +21,6 @@
     <string name="tv_Description">Description</string>
     <string name="tv_dateDebut">Date de debut</string>
     <string name="tv_dateFin">Date de fin</string>
+    <string name="btn_test">Test</string>
+    <string name="btn_quitter">Quitter</string>
 </resources>

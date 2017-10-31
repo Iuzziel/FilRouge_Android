@@ -17,19 +17,19 @@ import java.util.Calendar;
 import afpa.dl101_filrouge_android.R;
 import afpa.dl101_filrouge_android.metier.ToolBox;
 
-public class ConsulterEvenement extends AppCompatActivity {
+public class DetailEvenement extends AppCompatActivity {
     private int rDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recherche_evenement);
+        setContentView(R.layout.activity_detail_evenement);
     }
 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dateConsultDisplay:
-                DialogFragment newFragment = new DatePickerFragment();
+                DialogFragment newFragment = new RechercherEvenement.DatePickerFragment();
                 newFragment.show(getFragmentManager(), "DatePicker");
                 break;
             case R.id.btn_recherche:
@@ -75,7 +75,7 @@ public class ConsulterEvenement extends AppCompatActivity {
         // Callback to DatePickerActivity.onDateSet() to update the UI
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            ((ConsulterEvenement) getActivity()).onDateSet(year, monthOfYear, dayOfMonth);
+            ((RechercherEvenement) getActivity()).onDateSet(year, monthOfYear, dayOfMonth);
         }
     }
 }

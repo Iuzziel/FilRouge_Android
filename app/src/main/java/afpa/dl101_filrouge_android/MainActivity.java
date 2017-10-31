@@ -3,6 +3,9 @@ package afpa.dl101_filrouge_android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 import afpa.dl101_filrouge_android.objet.Meteo;
 import afpa.dl101_filrouge_android.tacheAsynchrone.RequeteMeteoAsync;
 import afpa.dl101_filrouge_android.vues.AjouterEvenement;
-import afpa.dl101_filrouge_android.vues.ConsulterEvenement;
+import afpa.dl101_filrouge_android.vues.RechercherEvenement;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 break;
             case R.id.btn_ConsultEvent:
-                Intent intent2 = new Intent(this, ConsulterEvenement.class);
+                Intent intent2 = new Intent(this, RechercherEvenement.class);
                 startActivity(intent2);
                 break;
             case R.id.btn_test:
-                RequeteMeteoAsync requeteMeteoAsync = new RequeteMeteoAsync(
-                        new Meteo("", 0d, 0d, 0d, 0d, 0d));
+                Meteo recMeteo = new Meteo("Caen");
+                RequeteMeteoAsync requeteMeteoAsync = new RequeteMeteoAsync(recMeteo);
                 try {
-                    Meteo meteoTest = requeteMeteoAsync.execute("Caen,fr").get();
+                    Meteo meteoTest = requeteMeteoAsync.execute(recMeteo.getLocation()).get();
                     Toast.makeText(this, meteoTest.toString(), Toast.LENGTH_SHORT).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -43,6 +46,31 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        // Instanciation du menu XML spécifier en un objet Menu
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // On teste l’Id de l’item cliqué et on déclenche une action
+        switch (item.getItemId()) {
+            case R.id.ajouterEvent:
+                startActivity(new Intent(this, AjouterEvenement.class));
+                return true;
+            case R.id.rechercherEvent:
+                startActivity(new Intent(this, RechercherEvenement.class));
+                return true;
+            case R.id.quitter:
+                finish();
+                return true;
+            default:
+                return false;
         }
     }
 }

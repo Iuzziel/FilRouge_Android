@@ -22,11 +22,11 @@
             android:name=".vues.AjouterEvenement"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".vues.ConsulterEvenement"
+            android:name=".vues.RechercherEvenement"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".vues.ListEvenement"
-            android:parentActivityName=".vues.ConsulterEvenement" />
+            android:parentActivityName=".vues.RechercherEvenement" />
     </application>
 
 </manifest>

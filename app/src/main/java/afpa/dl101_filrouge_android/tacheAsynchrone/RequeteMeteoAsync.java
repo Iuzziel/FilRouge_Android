@@ -25,7 +25,7 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
 
     // Tests qui fonctionnent :
     // http://api.openweathermap.org/data/2.5/weather?q=Caen,fr&type=like&APPID=691333b93c35e1c6174fac1de1841c58
-    // http://api.openweathermap.org/data/2.5/weather?q=Caen&APPID=691333b93c35e1c6174fac1de1841c58
+    // http://api.openweathermap.org/data/2.5/weather?q=Caen&type=like&APPID=691333b93c35e1c6174fac1de1841c58
     public RequeteMeteoAsync(Meteo meteo) {
         this.meteo = meteo;
     }
@@ -70,6 +70,8 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
 
             String description = jsonResult.getJSONArray("weather").getJSONObject(0).getString("description");
 
+            String icone = jsonResult.getJSONArray("weather").getJSONObject(0).getString("icon");
+
             double temperature = jsonResult.getJSONObject("main").getDouble("temp");
             temperature = ToolBox.ConvTempToFarenheit(temperature);
 
@@ -82,6 +84,7 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
             double cloudPerc = jsonResult.getJSONObject("cloud").getDouble("all");
 
             this.meteo.setDescription(description);
+            this.meteo.setIcone(icone);
             this.meteo.setTemperature(temperature);
             this.meteo.setPressure(pressure);
             this.meteo.setHumidity(humidity);

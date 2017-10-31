@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
@@ -41,9 +44,19 @@ public class ListEvenement extends AppCompatActivity {
 
             if (!(vSelectEvent.isEmpty())) {
                 ArrayList<Evenement> listEvent = getAListOfEvent(vSelectEvent);
-                EvenementAdapter adapter = new EvenementAdapter(this, listEvent);
+                final EvenementAdapter adapter = new EvenementAdapter(this, listEvent);
                 ListView list = (ListView) findViewById(R.id.listEvent);
                 list.setAdapter(adapter);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Object eventSelect = adapter.getItem(position);
+                        Log.e("onItemClick", "Erreur");
+                        Intent intent = new Intent(getApplicationContext(), DetailEvenement.class);
+                        intent.putExtra("itemSelect", (Serializable) eventSelect);
+                        startActivity(intent);
+                    }
+                });
             } else {
                 Toast.makeText(this, R.string.noEventToast, Toast.LENGTH_LONG).show();
             }

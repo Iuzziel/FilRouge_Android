@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ajouterEvent"
+        android:icon="@drawable/ajouter"
+        android:title="@string/btn_AjoutEvent"
+        app:showAsAction="ifRoom|withText"></item>
+    <item
+        android:id="@+id/rechercherEvent"
+        android:icon="@drawable/rechercher"
+        android:title="@string/btn_recherche"
+        app:showAsAction="ifRoom|withText">
+
+    </item>
+    <item
+        android:id="@+id/quitter"
+        android:icon="@drawable/quit"
+        android:title="@string/btn_quitter" />
+</menu>

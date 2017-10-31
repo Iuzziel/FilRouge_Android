@@ -64,4 +64,5 @@ public class EvenementAdapter extends BaseAdapter {
 
         return layoutItem;
     }
+
 }

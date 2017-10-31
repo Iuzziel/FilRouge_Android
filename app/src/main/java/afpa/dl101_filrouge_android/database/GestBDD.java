@@ -36,11 +36,11 @@ class GestBDD extends SQLiteOpenHelper {
     private static final String COL_HUMIDITE = "humidite";
     private static final String COL_VENT = "vent";
     private static final String COL_NUAGE = "nuage";
-    private static final String COL_UPDATE = "update";
-    private static final String COL_DATE = "date";
+    private static final String COL_LASTUPDATE = "lastUpdate";
+    private static final String COL_DATE = "dateConcerne";
 
     private static final String CREATE_TABLE_METEO = "CREATE TABLE " + TABLE_METEO + " (" +
-            COL_LOCATION + " TEXT PRIMARY KEY NOT NULL, " +
+            COL_LOCATION + " TEXT NOT NULL, " +
             COL_METEO_DESCRIPTION + " TEXT NOT NULL, " +
             COL_ICONE + " TEXT NOT NULL, " +
             COL_TEMPERATURE + " NUMERIC NOT NULL, " +
@@ -48,8 +48,11 @@ class GestBDD extends SQLiteOpenHelper {
             COL_HUMIDITE + " NUMERIC NOT NULL, " +
             COL_VENT + " NUMERIC NOT NULL, " +
             COL_NUAGE + " NUMERIC NOT NULL, " +
-            COL_UPDATE + " NUMERIC NOT NULL, " +
-            COL_DATE + " NUMERIC PRIMARY KEY NOT NULL );";
+            COL_LASTUPDATE + " NUMERIC NOT NULL, " +
+            COL_DATE + " NUMERIC NOT NULL, " +
+            " FOREIGN KEY(" + COL_LOCATION + ") REFERENCES " + TABLE_EVENEMENT + " (" + COL_LOCATION + "), " +
+            " PRIMARY KEY (" + COL_LOCATION + ", " + COL_DATE + ") " +
+            " );";
 
     private static final String DROP_TABLE_METEO = "DROP TABLE IF EXISTS " + TABLE_METEO + ";";
 

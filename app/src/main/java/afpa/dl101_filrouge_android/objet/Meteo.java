@@ -9,7 +9,7 @@ public class Meteo {
     private Double humidity;
     private Double windSpeed;
     private Double cloudPerc;
-    private String update;
+    private String lastUpdate;
     private String date;
 
     public Meteo(String location, String date) {
@@ -19,7 +19,7 @@ public class Meteo {
 
     public Meteo(String location, String description, String icone, Double temperature,
                  Double pressure, Double humidity, Double windSpeed,
-                 Double cloudPerc, String update, String date) {
+                 Double cloudPerc, String lastUpdate, String date) {
         this.location = location;
         this.description = description;
         this.icone = icone;
@@ -28,16 +28,16 @@ public class Meteo {
         this.humidity = humidity;
         this.windSpeed = windSpeed;
         this.cloudPerc = cloudPerc;
-        this.update = update;
+        this.lastUpdate = lastUpdate;
         this.date = date;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public String getDate() {

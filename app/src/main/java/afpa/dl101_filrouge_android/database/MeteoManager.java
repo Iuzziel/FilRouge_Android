@@ -8,7 +8,6 @@ import android.util.Log;
 
 import java.util.Vector;
 
-import afpa.dl101_filrouge_android.objet.Evenement;
 import afpa.dl101_filrouge_android.objet.Meteo;
 
 public class MeteoManager {
@@ -30,9 +29,9 @@ public class MeteoManager {
     private static final int NUM_COL_VENT = 6;
     private static final String COL_NUAGE = "nuage";
     private static final int NUM_COL_NUAGE = 7;
-    private static final String COL_UPDATE = "update";
-    private static final int NUM_COL_UPDATE = 8;
-    private static final String COL_DATE = "date";
+    private static final String COL_LASTUPDATE = "lastUpdate";
+    private static final int NUM_COL_LASTUPDATE = 8;
+    private static final String COL_DATE = "dateConcerne";
     private static final int NUM_COL_DATE = 9;
 
     private static final String NOM_BDD = "calendrierMeteoBDD";
@@ -67,7 +66,7 @@ public class MeteoManager {
 
         Cursor c = bdd.query(TABLE_METEO,
                 new String[]{COL_LOCATION, COL_DESCRIPTION, COL_ICONE, COL_TEMPERATURE,
-                        COL_PRESSION, COL_HUMIDITE, COL_VENT, COL_NUAGE, COL_UPDATE, COL_DATE},
+                        COL_PRESSION, COL_HUMIDITE, COL_VENT, COL_NUAGE, COL_LASTUPDATE, COL_DATE},
                 //date + " BETWEEN " + COL_DEBUT + " AND " + COL_FIN,
                 COL_DATE + " = " + date,
                 null, null, null, null);
@@ -103,7 +102,7 @@ public class MeteoManager {
                     c.getDouble(NUM_COL_HUMIDITE),
                     c.getDouble(NUM_COL_VENT),
                     c.getDouble(NUM_COL_NUAGE),
-                    c.getString(NUM_COL_UPDATE),
+                    c.getString(NUM_COL_LASTUPDATE),
                     c.getString(NUM_COL_DATE)));
         } while (c.moveToNext());
         c.close();
@@ -128,7 +127,7 @@ public class MeteoManager {
         valMeteo.put(COL_HUMIDITE, meteo.getHumidity());
         valMeteo.put(COL_VENT, meteo.getWindSpeed());
         valMeteo.put(COL_NUAGE, meteo.getCloudPerc());
-        valMeteo.put(COL_UPDATE, meteo.getUpdate());
+        valMeteo.put(COL_LASTUPDATE, meteo.getLastUpdate());
         valMeteo.put(COL_DATE, meteo.getDate());
         long new_id = 0;
         try {
@@ -170,7 +169,7 @@ public class MeteoManager {
         valMeteo.put(COL_HUMIDITE, meteo.getHumidity());
         valMeteo.put(COL_VENT, meteo.getWindSpeed());
         valMeteo.put(COL_NUAGE, meteo.getCloudPerc());
-        valMeteo.put(COL_UPDATE, meteo.getUpdate());
+        valMeteo.put(COL_LASTUPDATE, meteo.getLastUpdate());
         valMeteo.put(COL_DATE, meteo.getDate());
         bdd.update(TABLE_METEO, valMeteo, COL_LOCATION + " = " + meteo.getLocation()
                 + " AND " + COL_DATE + " = " + meteo.getDate(), null);

@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Meteo meteoTest = requeteMeteoAsync.execute(recMeteo.getLocation()).get();
                     Toast.makeText(this, meteoTest.getLocation() + " "
-                            + meteoTest.getTemperature() + "°C " + meteoTest.getDescription(), Toast.LENGTH_SHORT).show();
+                            + meteoTest.getTemperature() + "°C "
+                            + meteoTest.getDescription(), Toast.LENGTH_SHORT).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

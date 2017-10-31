@@ -55,8 +55,6 @@ public class EvenementAdapter extends BaseAdapter {
         TextView dateFin = (TextView) layoutItem.findViewById(R.id.dateFinDisplay);
         TextView editDesc = (TextView) layoutItem.findViewById(R.id.editDescription);
 
-        Log.e("EvenementManager", "1) " + vListEvenement.get(0).getTitre());
-
         editTitre.setText(vListEvenement.get(position).getTitre());
         dateDebut.setText(ToolBox.formatDate(String.valueOf(vListEvenement.get(position).getDateIntDebut())));
         dateFin.setText(ToolBox.formatDate(String.valueOf(vListEvenement.get(position).getDateIntFin())));

@@ -52,7 +52,7 @@ public class ListEvenement extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Object eventSelect = adapter.getItem(position);
                         Log.e("onItemClick", "Erreur");
-                        Intent intent = new Intent(getApplicationContext(), DetailEvenement.class);
+                        Intent intent = new Intent(getApplicationContext(), ListEvenementDetail.class);
                         intent.putExtra("itemSelect", (Serializable) eventSelect);
                         startActivity(intent);
                     }

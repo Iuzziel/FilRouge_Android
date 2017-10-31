@@ -17,13 +17,13 @@ import java.util.Calendar;
 import afpa.dl101_filrouge_android.R;
 import afpa.dl101_filrouge_android.metier.ToolBox;
 
-public class DetailEvenement extends AppCompatActivity {
+public class ListEvenementDetail extends AppCompatActivity {
     private int rDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_evenement);
+        setContentView(R.layout.activity_consulter_evenement);
     }
 
     public void onClick(View view) {

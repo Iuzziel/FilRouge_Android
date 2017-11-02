@@ -88,15 +88,43 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
+        android:id="@+id/tv_Empl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateFinDisplay" />
+
+    <TextView
+        android:id="@+id/editEmpl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/entrezLocation"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_Empl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_Empl" />
+
+    <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/tv_Description"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_DateFin" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_Empl" />
 
     <TextView
         android:id="@+id/editDescription"
@@ -113,24 +141,36 @@
         app:layout_constraintLeft_toRightOf="@+id/tvDescription"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
-        android:id="@+id/btn_EditEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/btn_EditEvent"
-        app:layout_constraintLeft_toRightOf="@+id/btn_DelEvent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+    <!--    <Button
+            android:id="@+id/btn_EditEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_EditEvent"
+            app:layout_constraintLeft_toRightOf="@+id/btn_DelEvent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
-    <Button
-        android:id="@+id/btn_DelEvent"
+        <Button
+            android:id="@+id/btn_DelEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_DelEvent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_EditEvent"
+            app:layout_constraintTop_toBottomOf="@+id/editDescription" />-->
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imgMeteo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/btn_DelEvent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btn_EditEvent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
 </android.support.constraint.ConstraintLayout>

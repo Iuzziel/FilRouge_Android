@@ -70,6 +70,28 @@ public class EvenementManager {
         }
     }
 
+    public Evenement getEvenementFromId(int id) {
+        open();
+        Cursor c = bdd.query(TABLE_EVENEMENT,
+                new String[]{COL_ID, COL_TITRE, COL_DESCRIPTION, COL_DEBUT, COL_FIN, COL_LOCATION},
+                COL_ID + " = " + id,
+                null, null, null, null);
+
+        c.moveToFirst();
+        Evenement nEvenement = new Evenement(c.getInt(NUM_COL_ID),
+                c.getString(NUM_COL_TITRE),
+                c.getString(NUM_COL_DESCRIPTION),
+                c.getInt(NUM_COL_DEBUT),
+                c.getInt(NUM_COL_FIN),
+                c.getString(NUM_COL_LOCATION));
+        c.close();
+        if (c.getCount() != 0) {
+            return nEvenement;
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Transforme un curseur d'evenement en vecteur d'evenements
      *

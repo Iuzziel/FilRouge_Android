@@ -9,10 +9,10 @@ import java.util.Vector;
 import afpa.dl101_filrouge_android.database.EvenementManager;
 import afpa.dl101_filrouge_android.objet.Evenement;
 
-public class SelectEventAsynchrone extends AsyncTask<Integer, Integer, Vector<Evenement>> {
+public class SelectEventFromDateAsync extends AsyncTask<Integer, Integer, Vector<Evenement>> {
     private Context mContext;
 
-    public SelectEventAsynchrone(Context context) {
+    public SelectEventFromDateAsync(Context context) {
         mContext = context;
     }
 

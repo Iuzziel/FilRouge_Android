@@ -10,32 +10,33 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
-import afpa.dl101_filrouge_android.metier.ToolBox;
 import afpa.dl101_filrouge_android.objet.Meteo;
 
-public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
+public class ReqMeteoForecast extends AsyncTask<Meteo, Void, Map<String, String>> {
     private Meteo meteo;
     private final String apikey = "691333b93c35e1c6174fac1de1841c58";
-    private final String http = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private final String http = "http://api.openweathermap.org/data/2.5/find?q=";
     private final String httpFin = ",fr&type=like&APPID=" + apikey;
     private final int READ_TIMEOUT = 10000;// Miliseconde
     private final int CONNECT_TIMEOUT = 10000;// Miliseconde
 
     // Tests qui fonctionnent :
-    // http://api.openweathermap.org/data/2.5/weather?q=Caen,fr&type=like&APPID=691333b93c35e1c6174fac1de1841c58
-    // http://api.openweathermap.org/data/2.5/weather?q=Caen&type=like&APPID=691333b93c35e1c6174fac1de1841c58
-    public RequeteMeteoAsync(Meteo meteo) {
+    // http://api.openweathermap.org/data/2.5/forecast?q=Caen,fr&type=like&APPID=691333b93c35e1c6174fac1de1841c58
+    // http://api.openweathermap.org/data/2.5/forecast?q=Caen&type=like&APPID=691333b93c35e1c6174fac1de1841c58
+    public ReqMeteoForecast(Meteo meteo) {
         this.meteo = meteo;
     }
 
     @Override
-    protected Meteo doInBackground(String... emplacements) {
+    protected Map<String, String> doInBackground(Meteo... meteo) {
         String reponse = "";
         // Partie requete sur le serveur de l'api
-        for (String emplacement : emplacements) {
+        for (Meteo jMeteo : meteo) {
             try {
-                String requete = http + emplacement + httpFin;
+                String requete = http + jMeteo.getLocation() + httpFin;
                 URL url = new URL(requete);
 
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -65,39 +66,23 @@ public class RequeteMeteoAsync extends AsyncTask<String, Void, Meteo> {
         }
 
         // Partie recuperation et parsing de la reponse
+        Map<String, String> mapMeteo = new HashMap<String, String>();
         try {
             JSONObject jsonResult = new JSONObject(reponse);
 
-            String description = jsonResult.getJSONArray("weather").getJSONObject(0).getString("description");
-
-            String icone = jsonResult.getJSONArray("weather").getJSONObject(0).getString("icon");
-
-            double temperature = jsonResult.getJSONObject("main").getDouble("temp");
-            temperature = ToolBox.ConvTempToCelsius(temperature);
-
-            double pressure = jsonResult.getJSONObject("main").getDouble("pressure");
-
-            double humidity = jsonResult.getJSONObject("main").getDouble("humidity");
-
-            double windSpeed = jsonResult.getJSONObject("wind").getDouble("speed");
-
-            double cloudPerc = jsonResult.getJSONObject("clouds").getDouble("all");
-
-            this.meteo.setDescription(description);
-            this.meteo.setIcone(icone);
-            this.meteo.setTemperature(temperature);
-            this.meteo.setPressure(pressure);
-            this.meteo.setHumidity(humidity);
-            this.meteo.setWindSpeed(windSpeed);
-            this.meteo.setCloudPerc(cloudPerc);
+            Log.e("reqmetfor", jsonResult.toString());
+            for (int i = 0; i <= jsonResult.getInt("count"); i++) {
+                mapMeteo.put(jsonResult.getJSONArray("list").getJSONObject(i).getString("dt"),
+                        jsonResult.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon"));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return this.meteo;
+        return mapMeteo;
     }
 
     @Override
-    protected void onPostExecute(Meteo result) {
+    protected void onPostExecute(Map<String, String> result) {
         super.onPostExecute(result);
     }
 

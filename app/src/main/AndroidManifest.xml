@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="afpa.dl101_filrouge_android">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,6 +28,12 @@
         <activity
             android:name=".vues.ListEvenement"
             android:parentActivityName=".vues.RechercherEvenement" />
+        <activity
+            android:name=".vues.ListEvenementDetail"
+            android:parentActivityName=".vues.ListEvenement" />
+        <activity
+            android:name=".vues.ListMeteo"
+            android:parentActivityName=".vues.ListEvenementDetail" />
     </application>
 
 </manifest>

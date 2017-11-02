@@ -12,6 +12,10 @@ public class Meteo {
     private String lastUpdate;
     private String date;
 
+    public Meteo(String icone) {
+        this.icone = icone;
+    }
+
     public Meteo(String location, String date) {
         this.location = location;
         this.date = date;

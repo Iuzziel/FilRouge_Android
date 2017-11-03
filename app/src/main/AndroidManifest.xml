@@ -33,7 +33,7 @@
             android:parentActivityName=".vues.ListEvenement" />
         <activity
             android:name=".vues.ListMeteo"
-            android:parentActivityName=".vues.ListEvenementDetail" />
+            android:parentActivityName=".vues.RechercherEvenement" />
     </application>
 
 </manifest>

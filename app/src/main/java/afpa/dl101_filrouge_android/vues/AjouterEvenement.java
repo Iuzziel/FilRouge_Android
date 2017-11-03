@@ -104,7 +104,7 @@ public class AjouterEvenement extends AppCompatActivity {
             InsertEventAsynchrone insertEventAsynchrone = new InsertEventAsynchrone(this);
             try {// Les mois sont sur une base 0 avec le datePicker
                 long tmp = insertEventAsynchrone.execute(new Evenement(titre.getText().toString(),
-                        description.getText().toString(),
+                        description.getText().toString().trim(),
                         Integer.valueOf(String.valueOf(dYear)
                                 + ToolBox.padLeft(String.valueOf(dMonth + 1))
                                 + ToolBox.padLeft(String.valueOf(dDay))
@@ -113,7 +113,7 @@ public class AjouterEvenement extends AppCompatActivity {
                                 + ToolBox.padLeft(String.valueOf(fMonth + 1))
                                 + ToolBox.padLeft(String.valueOf(fDay))
                         ),
-                        location.getText().toString())
+                        location.getText().toString().trim())
                 ).get();
                 Toast.makeText(this, R.string.insertReussi, Toast.LENGTH_LONG).show();
                 Log.d("AsyncIns", "Insert réussi");

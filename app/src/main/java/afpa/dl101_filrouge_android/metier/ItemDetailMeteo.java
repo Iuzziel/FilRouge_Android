@@ -1,11 +1,11 @@
 package afpa.dl101_filrouge_android.metier;
 
 public class ItemDetailMeteo {
-    public final String x;
-    public final String y;
+    public final String dateHeureConcernee;
+    public final String iconeMeteo;
 
-    public ItemDetailMeteo(String x, String y) {
-        this.x = x;
-        this.y = y;
+    public ItemDetailMeteo(String dateHeureConcernee, String iconeMeteo) {
+        this.dateHeureConcernee = dateHeureConcernee;
+        this.iconeMeteo = iconeMeteo;
     }
 }

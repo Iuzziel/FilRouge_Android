@@ -49,7 +49,6 @@ public class ListEvenement extends AppCompatActivity {
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Log.e("ListEven", "Entree dans le listener");
                         Evenement eventSelect = (Evenement) adapter.getItem(position);
                         Intent intent = new Intent(getApplicationContext(), ListEvenementDetail.class);
                         intent.putExtra("itemSelectId", eventSelect.getId());

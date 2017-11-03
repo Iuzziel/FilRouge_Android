@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class ListMeteo extends AppCompatActivity {
         setContentView(R.layout.activity_list_detail_meteo);
         meteo = new Meteo("no_wifi");
         Intent thisIntent = getIntent();
-        Log.e("ListMeteo", thisIntent.getStringExtra("locMeteo"));
+
         this.meteo.setLocation(thisIntent.getStringExtra("locMeteo"));
         try {
             initControl();
@@ -43,13 +44,14 @@ public class ListMeteo extends AppCompatActivity {
         try {
             map = reqMeteoForecast.execute(meteo).get();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         try {
             ArrayList<ItemDetailMeteo> listEvent = getAListOfMeteo(map);
             final MeteoAdapter adapter = new MeteoAdapter(this, listEvent);
             ListView list = (ListView) findViewById(R.id.listEvent);
             list.setAdapter(adapter);
+            /*
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -60,6 +62,7 @@ public class ListMeteo extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,6 +75,15 @@ public class ListMeteo extends AppCompatActivity {
             itemDetailMeteo = new ItemDetailMeteo(entry.getKey(), entry.getValue());
             listEvent.add(itemDetailMeteo);
         }
+        ComparatorIDM cIdm = new ComparatorIDM();
+        java.util.Collections.sort(listEvent, cIdm);
         return listEvent;
+    }
+
+    public class ComparatorIDM implements Comparator<ItemDetailMeteo> {
+        @Override
+        public int compare(ItemDetailMeteo o1, ItemDetailMeteo o2) {
+            return o1.dateHeureConcernee.compareTo(o2.dateHeureConcernee);
+        }
     }
 }

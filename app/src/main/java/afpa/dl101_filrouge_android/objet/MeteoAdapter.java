@@ -2,6 +2,7 @@ package afpa.dl101_filrouge_android.objet;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,10 @@ public class MeteoAdapter extends BaseAdapter {
         }
 
         ImageView imgMeteo = layoutItem.findViewById(R.id.imgMeteo);
-        TextView date = layoutItem.findViewById(R.id.dateDebutDisplay);
+        TextView date = layoutItem.findViewById(R.id.tv_date_meteo);
 
-        for (ItemDetailMeteo itemDetailMeteo : tMeteo) {
-            date.setText(itemDetailMeteo.x);
-            imgMeteo.setImageResource(mContext.getResources().getIdentifier("icn_" + itemDetailMeteo.y, "mipmap", mContext.getPackageName()));
-        }
+        date.setText(tMeteo.get(position).dateHeureConcernee);
+        imgMeteo.setImageResource(mContext.getResources().getIdentifier("icn_" + tMeteo.get(position).iconeMeteo, "mipmap", mContext.getPackageName()));
 
         return layoutItem;
     }

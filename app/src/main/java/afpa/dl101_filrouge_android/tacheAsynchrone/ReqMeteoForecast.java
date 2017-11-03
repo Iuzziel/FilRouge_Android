@@ -18,7 +18,7 @@ import afpa.dl101_filrouge_android.objet.Meteo;
 public class ReqMeteoForecast extends AsyncTask<Meteo, Void, Map<String, String>> {
     private Meteo meteo;
     private final String apikey = "691333b93c35e1c6174fac1de1841c58";
-    private final String http = "http://api.openweathermap.org/data/2.5/find?q=";
+    private final String http = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private final String httpFin = ",fr&type=like&APPID=" + apikey;
     private final int READ_TIMEOUT = 10000;// Miliseconde
     private final int CONNECT_TIMEOUT = 10000;// Miliseconde
@@ -71,8 +71,8 @@ public class ReqMeteoForecast extends AsyncTask<Meteo, Void, Map<String, String>
             JSONObject jsonResult = new JSONObject(reponse);
 
             Log.e("reqmetfor", jsonResult.toString());
-            for (int i = 0; i <= jsonResult.getInt("count"); i++) {
-                mapMeteo.put(jsonResult.getJSONArray("list").getJSONObject(i).getString("dt"),
+            for (int i = 0; i < jsonResult.getInt("cnt"); i++) {
+                mapMeteo.put(jsonResult.getJSONArray("list").getJSONObject(i).getString("dt_txt"),
                         jsonResult.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon"));
             }
         } catch (JSONException e) {

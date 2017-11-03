@@ -24,4 +24,5 @@
     <string name="btn_quitter">Quit</string>
     <string name="tv_location">Location</string>
     <string name="entrezLocation">City near</string>
+    <string name="tv_temperature">Temperature</string>
 </resources>
